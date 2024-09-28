@@ -43,7 +43,7 @@ void conversion (std::vector<int> &input, std::string &enter) {
     int en;
     for (int i = 0; i < enter.size(); i++) {
         if (enter[i] >= '0' && enter[i] <= '9'){
-            i == 0 ? en = enter[i] - '0' : en = en * 10 + (enter[i] - '0');
+            en = i == 0 ? enter[i] - '0' : en * 10 + (enter[i] - '0');
         } else {
             print_error(2);
             return;
