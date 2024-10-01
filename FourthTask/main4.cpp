@@ -21,19 +21,17 @@ int main () {
     std::cout << "\nSorting in ascending order of the module value:\n";
     std::cout << array[minInd] << " ";
 
-    for (int i = 1, y = 1, k = 1; k < size; k++) {
-        int tempInd1 = minInd - i >= 0 ? minInd - i : 0;
-        int tempInd2 = minInd + y < size ? minInd + y : size - 1;
-        int temp1 = array[tempInd1] < 0 ? array[tempInd1] * -1 : array[tempInd1];
-        int temp2 = array[tempInd2] < 0 ? array[tempInd2] * -1 : array[tempInd2];
-        if (temp1 <= temp2 || minInd + y >= size) {
-            std::cout << array[tempInd1] << " ";
-            i++;
-        } else if (temp1 > temp2 || minInd - i < 0) {
-            std::cout << array[tempInd2] << " ";
+    bool begin = false, end = false;
+    for (int i = minInd - 1, y = minInd + 1; i >= 0 || y < size;){
+        if (((array[i] * -1) <= array[y] && !begin) || end) {
+            if (!begin && i == 0) begin = true;
+            std::cout << array[i] << " ";
+            i--;
+        } else {
+            if (!end && y == size - 1) end = true;
+            std::cout << array[y] << " ";
             y++;
         }
-        
     }
 
     return 0;
