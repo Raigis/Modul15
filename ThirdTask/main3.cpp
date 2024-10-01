@@ -31,8 +31,7 @@ void insertion (std::vector<int> &input, int &enter) {
         for (int i = 0; i <= input.size(); i++) {
             if (enter <= input[i]) {
                 if (input.size() == 5) input.pop_back();
-                auto pos = std::next(input.begin(), i);
-                input.insert(pos, enter);
+                input.insert(std::next(input.begin(), i), enter);
                 break;
             } 
         }
