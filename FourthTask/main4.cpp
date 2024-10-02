@@ -22,16 +22,12 @@ int main () {
     std::cout << array[minInd] << " ";
 
     bool begin = false, end = false;
-    for (int i = minInd - 1, y = minInd + 1; i >= 0 || y < size;){
+    for (int i = minInd - 1, y = minInd + 1; i > 0 || y < size;){
         if ((!begin && -array[i] <= array[y]) || end) {
-        /*
-        Поменял условия !begin и -array[i] <= array[y] местами.
-        Так, к моменту, когда i будет равно -1, обращения не будет из-за провала теперь уже первой проверки на !begin.
-        */
-            if (!begin && i == 0) begin = true; //Контроль достижения начала массива
-            std::cout << array[i--] << " ";
+            if (!begin && i == 0) begin = true;
+            std::cout << array[i == 0 ? 0 : i--] << " "; //Исправление. Постдекремент присеняется только пока i != 0, так i не опускается ниже 0. 
         } else {
-            if (!end && y == size - 1) end = true; //Контроль достижения конца массива
+            if (!end && y == size - 1) end = true;
             std::cout << array[y++] << " ";
         }
     }
