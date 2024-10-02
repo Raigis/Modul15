@@ -6,7 +6,7 @@
 #include <iostream>
 
 int main () {
-    int array[] = {-100, -50, -5, 1, 10, 15};
+    int array[] = {-8, -7, -6, -5, 1, 10, 15};
     int min = array[0] < 0 ? array[0] * -1 : array[0], minInd = 0;
     int size = sizeof(array)/sizeof(array[0]);
     for (int i = 1; i < size; i++) {
@@ -23,14 +23,16 @@ int main () {
 
     bool begin = false, end = false;
     for (int i = minInd - 1, y = minInd + 1; i >= 0 || y < size;){
-        if (((array[i] * -1) <= array[y] && !begin) || end) {
-            if (!begin && i == 0) begin = true;
-            std::cout << array[i] << " ";
-            i--;
+        if ((!begin && -array[i] <= array[y]) || end) {
+        /*
+        Поменял условия !begin и -array[i] <= array[y] местами.
+        Так, к моменту, когда i будет равно -1, обращения не будет из-за провала теперь уже первой проверки на !begin.
+        */
+            if (!begin && i == 0) begin = true; //Контроль достижения начала массива
+            std::cout << array[i--] << " ";
         } else {
-            if (!end && y == size - 1) end = true;
-            std::cout << array[y] << " ";
-            y++;
+            if (!end && y == size - 1) end = true; //Контроль достижения конца массива
+            std::cout << array[y++] << " ";
         }
     }
 
