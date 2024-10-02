@@ -22,10 +22,10 @@ int main () {
     std::cout << array[minInd] << " ";
 
     bool begin = false, end = false;
-    for (int i = minInd - 1, y = minInd + 1; i > 0 || y < size;){
-        if ((!begin && -array[i] <= array[y]) || end) {
+    for (int i = minInd - 1, y = minInd + 1; i >= 0 || y < size;){
+        if ((!begin && -array[i == -1 ? i = 0 : i] <= array[y == size ? size - 1 : y]) || end) {
             if (!begin && i == 0) begin = true;
-            std::cout << array[i == 0 ? 0 : i--] << " "; //Исправление. Постдекремент присеняется только пока i != 0, так i не опускается ниже 0. 
+            std::cout << array[i--] << " ";
         } else {
             if (!end && y == size - 1) end = true;
             std::cout << array[y++] << " ";
